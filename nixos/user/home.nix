@@ -42,6 +42,8 @@
             enable = true;
             font.name = "FiraCode Nerd Font Reg";
             font.package = (pkgs.nerdfonts.override { fonts = ["FiraCode"]; });
+            settings.enable_audio_bell = false;
+            theme = "Dracula";
         };
 
         zsh = {
