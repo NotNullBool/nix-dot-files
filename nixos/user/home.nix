@@ -46,6 +46,8 @@
             theme = "Dracula";
         };
 
+        lf = { enable = true; };
+
         zsh = {
             enable = true;
             enableAutosuggestions = true;
