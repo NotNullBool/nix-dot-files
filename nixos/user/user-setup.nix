@@ -8,5 +8,7 @@
         isNormalUser = true;
         extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
         hashedPasswordFile = config.sops.secrets."users/unix/passwd".path;
+        shell = pkgs.zsh;
+        # ignoreShellProgramCheck = true;
     };
 }

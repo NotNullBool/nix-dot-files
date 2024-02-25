@@ -64,11 +64,13 @@
 
 # List packages installed in system profile. To search, run:
 # $ nix search wget
+    programs.zsh.enable = true;
+    programs.ssh.askPassword = "";
     environment.systemPackages = with pkgs; [
         neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-            wget
-            tmux
-            git
+        wget
+        tmux
+        git
     ];
 
 # Some programs need SUID wrappers, can be configured further or are
