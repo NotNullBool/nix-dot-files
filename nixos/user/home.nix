@@ -30,14 +30,6 @@
 
 
     programs = {
-        neovim = {
-            enable = true;
-            defaultEditor = true;
-            viAlias = true;
-            vimAlias = true;
-            withNodeJs = true;
-            withPython3 = true;
-        };
 
         home-manager = {
             enable = true;
@@ -276,7 +268,17 @@
         # '';
 
         ".config/nixpkgs" = { source = ../../.config/nixpkgs; recursive = true;};
-        ".config/nvim" = { source = ../../.config/nvim; recursive = true; };
+    };
+
+
+    home.file.".config/nvim" = { source = ../../.config/nvim; recursive = true; };
+    programs.neovim = {
+        enable = true;
+        defaultEditor = true;
+        viAlias = true;
+        vimAlias = true;
+        withNodeJs = true;
+        withPython3 = true;
     };
 
 
