@@ -276,7 +276,7 @@
         # '';
 
         ".config/nixpkgs" = { source = ../../.config/nixpkgs; recursive = true;};
-        ".config/nvim" = { source = ../../.config/nvim; recursive = true;};
+        ".config/nvim" = { source = ../../.config/nvim; };
     };
 
 
