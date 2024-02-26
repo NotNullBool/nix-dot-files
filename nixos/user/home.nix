@@ -13,6 +13,8 @@
     home.homeDirectory = "/home/unix";
 
     home.packages = with pkgs; [
+        yq
+        trashy
         fd
         rustup
         gcc
@@ -36,14 +38,22 @@
 
     programs.starship.enable = true;
     home.file.".config/starship.toml".source = ../../.config/starship.toml;
+    
+    programs.tmux.enable = true;
+    home.file.".config/tmux" = { 
+        source = ../../.config/tmux; 
+        recursive = true;
+    };
+    home.file.".tmux/plugins/tpm".source = pkgs.fetchFromGitHub {
+        owner = "tmux-plugins";
+        repo = "tpm";
+        rev = "99469c4a9b1ccf77fade25842dc7bafbc8ce9946";
+        hash = "sha256-hW8mfwB8F9ZkTQ72WQp/1fy8KL1IIYMZBtZYIwZdMQc=";
+    };
 
     programs = {
 
         # rofi.enable = true; # window switcher and application launcher
-
-        tmux = {
-            enable = true;
-        };
 
         script-directory = {
             enable = true;
@@ -112,40 +122,4 @@
 
     };
 
-
-    # Home Manager is pretty good at managing dotfiles. The primary way to manage
-    # plain files is through 'home.file'.
-    home.file = {
-        # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-        # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-        # # symlink to the Nix store copy.
-        # ".screenrc".source = dotfiles/screenrc;
-        
-        # # You can also set the file content immediately.
-        # ".gradle/gradle.properties".text = ''
-        #   org.gradle.console=verbose
-        #   org.gradle.daemon.idletimeout=3600000
-        # '';
-    };
-
-
-    # Home Manager can also manage your environment variables through
-    # 'home.sessionVariables'. If you don't want to manage your shell through Home
-    # Manager then you have to manually source 'hm-session-vars.sh' located at
-    # either
-    #
-    #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-    #
-    # or
-    #
-    #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-    #
-    # or
-    #
-    #  /etc/profiles/per-user/unix/etc/profile.d/hm-session-vars.sh
-    #
-    home.sessionVariables = {
-    };
-
-    # Let Home Manager install and manage itself.
 }

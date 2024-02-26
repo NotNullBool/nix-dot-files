@@ -80,6 +80,7 @@
         };
         shellAliases = {
             cat = "bat";
+            tp = "trash put";
         };
     };
 }

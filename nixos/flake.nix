@@ -35,8 +35,8 @@
                 config = {allowUnfree=true;};
                 overlays = [ inputs.nur.overlay ];
             };
-            extraSpecialArgs = { 
-                inherit inputs; 
+            extraSpecialArgs = {
+                inherit inputs;
             };
             modules = [
                 ./user/home.nix

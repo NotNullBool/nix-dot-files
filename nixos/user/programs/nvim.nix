@@ -7,7 +7,7 @@
         # fzf # set up in home.nix
     ];
 
-    home.file.".config/nvim" = { source = ../../.config/nvim; recursive = true; };
+    home.file.".config/nvim" = { source = ../../../.config/nvim; recursive = true; };
     programs.neovim = {
         enable = true;
         defaultEditor = true;
