@@ -2,6 +2,15 @@
     programs.zsh = {
         enable = true;
         enableAutosuggestions = true;
+        initExtra = ''
+            if [ ! "$TMUX" ]; then
+                if tmux has-session -t main; then
+                    exec tmux attach -t main
+                else
+                    exec tmux new -s main
+                fi
+            fi
+        '';
         syntaxHighlighting = {
             enable = true;
             highlighters = [
