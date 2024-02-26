@@ -43,7 +43,29 @@
             font.name = "FiraCode Nerd Font Reg";
             font.package = (pkgs.nerdfonts.override { fonts = ["FiraCode"]; });
             settings.enable_audio_bell = false;
-            theme = "Dracula";
+            extraConfig = ''
+                background #22212C
+                foreground #f8f8f2
+                cursor #ABB2BF
+                selection_background #44475a
+                color0 #191A21
+                color8 #4B5263
+                color1 #ff5555
+                color9 #FF6E6E
+                color2 #50fa7b
+                color10 #8AFF80
+                color3 #FFFF80
+                color11 #F1FA8C
+                color4 #9580FF
+                color12 #bd93f9
+                color5 #FF80BF
+                color13 #FF92DF
+                color6 #80FFEA
+                color14 #A4FFFF
+                color7 #ABB2BF
+                color15 #ffffff
+                selection_foreground #1e1f28
+            '';
         };
 
         lf = { enable = true; };
@@ -135,6 +157,49 @@
         lsd = {
             enable = true;
             enableAliases = true;
+            settings = {
+                color.when = "always";
+                icons = {
+                    when = "always";
+                    theme = "fancy";
+                    seperator = " ";
+                };
+                permission = "rwx";
+                hyperlink = "never";
+                no-symlink = false;
+                symlink-arrow = "⇒";
+            };
+            colors = {
+                user = 159;                           # cyan
+                group = 231;                          # foreground
+                permission = {
+                    read = 183;                         # blue
+                    write = 212;                        # magenta
+                    exec = 159;                         # cyan
+                    exec-sticky = 159;                  # cyan
+                    no-access = 210;                    # red
+                };
+                date = {
+                    hour-old = 146;                     # comment 20% lighter
+                    day-old = 103;                      # comment
+                    older = 60;                         # current line
+                };
+                size = {
+                    none = 60;                          # current line
+                    small = 120;                        # green
+                    medium = 222;                       # orange
+                    large = 210;                        # red
+                };
+                inode = {
+                    valid = 231;                        # foreground
+                    invalid = 210;                      # red
+                };
+                links = {
+                    valid = 159;                        # cyan
+                    invalid = 210;                      # red
+                };
+                tree-edge= 183;                      # blue
+            };
         };
 
         bat = {
