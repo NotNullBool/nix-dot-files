@@ -9,12 +9,10 @@
     home.homeDirectory = "/home/unix";
 
     home.packages = with pkgs; [
-        # firefox
-        kitty
+        fd
         rustup
         gcc
         # fonts
-        # (nerdfonts.override { fonts = [ "FiraCode" ]; } )
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
