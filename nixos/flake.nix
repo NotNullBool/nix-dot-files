@@ -2,7 +2,10 @@
     description = "Nixos config flake";
 
     inputs = {
+
         nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+
+        unstable-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
         sops-nix.url = "github:Mic92/sops-nix";
 
@@ -12,6 +15,7 @@
             url = "github:nix-community/home-manager/release-23.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
     };
 
     outputs = { self, nixpkgs, ... }@inputs:
@@ -35,9 +39,7 @@
                 config = {allowUnfree=true;};
                 overlays = [ inputs.nur.overlay ];
             };
-            extraSpecialArgs = {
-                inherit inputs;
-            };
+            extraSpecialArgs = { inherit inputs; };
             modules = [
                 ./user/home.nix
                 inputs.nur.hmModules.nur
