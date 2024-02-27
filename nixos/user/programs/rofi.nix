@@ -1,6 +1,13 @@
 {config, ...}:
 let
     inherit (config.lib.formats.rasi) mkLiteral;
+    rofi-extraConfig = {
+        combi-hide-mode-prefix = true;
+        kb-accept-entry = "Control+m,Return,KP_Enter";
+        kb-row-up = "Up,Control+p,Control+k"; #,ISO_Left_Tab already generated
+        kb-row-down = "Down,Control+n,Control+j";
+    };
+
     rofi-theme = {
         "*" = {
             drac-bgd = mkLiteral "#22212C";
@@ -175,5 +182,6 @@ in
     programs.rofi = {
         enable = true;
         theme = rofi-theme;
+        extraConfig = rofi-extraConfig;
     };
 }

@@ -20,6 +20,7 @@
         fd
         rustup
         gcc
+        fastfetch
         # fonts
         noto-fonts
         noto-fonts-cjk

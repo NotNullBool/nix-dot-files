@@ -10,6 +10,7 @@
                     exec tmux new -s main
                 fi
             fi
+            fastfetch
         '';
         syntaxHighlighting = {
             enable = true;
