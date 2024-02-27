@@ -13,8 +13,8 @@
     home.homeDirectory = "/home/unix";
 
     home.packages = with pkgs; [
-        yq
-        trashy
+        yq # used for yml files and added for TMUX plugin
+        trashy # buggy may want to replace
         fd
         rustup
         gcc
@@ -38,7 +38,9 @@
 
     programs.starship.enable = true;
     home.file.".config/starship.toml".source = ../../.config/starship.toml;
-    
+
+    programs.yazi.enable = true;
+
     programs.tmux.enable = true;
     home.file.".config/tmux" = { 
         source = ../../.config/tmux; 
@@ -77,8 +79,6 @@
                 spinner = "#ff87d7";
             };
         };
-
-        lf = { enable = true; };
 
         bat = {
             enable = true;
