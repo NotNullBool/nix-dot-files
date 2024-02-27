@@ -6,6 +6,7 @@
         ./programs/kitty.nix
         ./programs/zsh.nix
         ./programs/lsd.nix
+        ./programs/rofi.nix # x11 only;
         ./wm/qtile.nix
     ];
     # Home Manager needs a bit of information about you and the paths it should
@@ -58,8 +59,6 @@
     };
 
     programs = {
-
-        # rofi.enable = true; # window switcher and application launcher
 
         script-directory = {
             enable = true;
