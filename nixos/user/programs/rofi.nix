@@ -2,10 +2,10 @@
 let
     inherit (config.lib.formats.rasi) mkLiteral;
     rofi-extraConfig = {
-        combi-hide-mode-prefix = true;
         kb-accept-entry = "Control+m,Return,KP_Enter";
         kb-row-up = "Up,Control+p,Control+k"; #,ISO_Left_Tab already generated
         kb-row-down = "Down,Control+n,Control+j";
+        kb-remove-to-eol = "";
     };
 
     rofi-theme = {
