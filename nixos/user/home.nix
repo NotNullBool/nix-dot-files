@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 {
     imports = [
         ./programs/firefox.nix
@@ -21,6 +21,7 @@
         rustup
         gcc
         fastfetch
+        komorebi
         # fonts
         noto-fonts
         noto-fonts-cjk

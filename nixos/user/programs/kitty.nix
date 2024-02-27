@@ -27,6 +27,7 @@
             color7 #ABB2BF
             color15 #ffffff
             selection_foreground #1e1f28
+            background_opacity 0.5
         '';
     };
 }
