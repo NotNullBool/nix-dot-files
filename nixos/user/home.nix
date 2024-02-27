@@ -6,6 +6,7 @@
         ./programs/kitty.nix
         ./programs/zsh.nix
         ./programs/lsd.nix
+        ./wm/qtile.nix
     ];
     # Home Manager needs a bit of information about you and the paths it should
     # manage.

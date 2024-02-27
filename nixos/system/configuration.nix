@@ -14,7 +14,7 @@
         ../user/user-setup.nix
         ./wm/x11.nix
         ./wm/sddm.nix
-        ./wm/qtile.nix
+        ./wm/qtile/qtile.nix
     ];
 
 
