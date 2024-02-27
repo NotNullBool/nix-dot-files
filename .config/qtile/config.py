@@ -28,6 +28,14 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+import os
+
+homeDir = os.path.expanduser('~')
+
+wallpaper = homeDir+"/.config/qtile/default.png"
+
+if os.path.exists(homeDir+"/Wallpapers/current.png"):
+    wallpaper = homeDir+"/Wallpapers/current.png"
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -131,6 +139,8 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        wallpaper=wallpaper,
+        wallpaper_mode="fill",
         bottom=bar.Bar(
             [
                 widget.CurrentLayout(),
