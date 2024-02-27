@@ -48,8 +48,14 @@
 # services.printing.enable = true;
 
 # Enable sound.
-# sound.enable = true;
-# hardware.pulseaudio.enable = true;
+    sound.enable = true;
+    services.pipewire = {
+        enable = true;
+        wireplumber.enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+        jack.enable = true;
+    };
 
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
