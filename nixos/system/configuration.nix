@@ -6,13 +6,16 @@
 
 {
     imports =
-        [ # Include the results of the hardware scan.
+    [ # Include the results of the hardware scan.
         inputs.home-manager.nixosModules.default
-            inputs.sops-nix.nixosModules.sops
-            ./hardware-configuration.nix
-            ./networking.nix
-            ../user/user-setup.nix
-        ];
+        inputs.sops-nix.nixosModules.sops
+        ./hardware-configuration.nix
+        ./networking.nix
+        ../user/user-setup.nix
+        ./wm/x11.nix
+        ./wm/sddm.nix
+        ./wm/qtile.nix
+    ];
 
 
     nixpkgs.config.allowUnfree = true;
@@ -38,18 +41,8 @@
 # Set your time zone.
     time.timeZone = "America/New_York";
 
-# Enable the X11 windowing system.
-    services.xserver.enable = true;
-    services.xserver.windowManager.qtile.enable = true;
-    services.xserver.displayManager.sddm.enable = true;
-
 # Enable touchpad support (enabled default in most desktopManager).
-    services.xserver.libinput.enable = true;
 
-
-# Configure keymap in X11
-    services.xserver.xkb.layout = "us";
-# services.xserver.xkb.options = "caps:escape";
 
 # Enable CUPS to print documents.
 # services.printing.enable = true;
