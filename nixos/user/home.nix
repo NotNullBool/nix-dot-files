@@ -39,7 +39,16 @@
     programs.starship.enable = true;
     home.file.".config/starship.toml".source = ../../.config/starship.toml;
 
-    programs.yazi.enable = true;
+    programs.yazi = { 
+        enable = true;
+        enableZshIntegration = true;
+        theme = {
+            status = {
+                separator_open = "";
+                separator_close = "";
+            };
+        };
+    };
 
     programs.tmux.enable = true;
     home.file.".config/tmux" = { 
