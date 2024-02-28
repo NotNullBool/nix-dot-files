@@ -1,4 +1,11 @@
 {
+
+    home.sessionVariables = {
+        # Colorful manuals
+        MANPAGER = "sh -c 'col -bx | bat -l man -p'"; 
+        MANROFFOPT = "-c";
+    };
+
     programs.zsh = {
         enable = true;
         enableAutosuggestions = true;

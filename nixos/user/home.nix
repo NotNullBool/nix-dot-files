@@ -1,5 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, unstable-pkgs, ... }:
 {
+
     imports = [
         ./programs/firefox.nix
         ./programs/nvim.nix
@@ -59,6 +60,7 @@
         source = ../../.config/tmux; 
         recursive = true;
     };
+    
 
     programs = {
 

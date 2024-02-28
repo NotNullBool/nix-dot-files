@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, unstable-pkgs, ... }:
 
 {
     imports =
@@ -70,7 +70,9 @@
         wget
         tmux
         git
-    ];
+    ]; #++ [
+      #  unstable-pkgs.picom
+    #];
 
 # Some programs need SUID wrappers, can be configured further or are
 # started in user sessions.

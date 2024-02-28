@@ -37,6 +37,11 @@ wallpaper = homeDir+"/.config/qtile/default.png"
 if os.path.exists(homeDir+"/Wallpapers/current.png"):
     wallpaper = homeDir+"/Wallpapers/current.png"
 
+@hook.subscribe.startup_once
+def start_once():
+    subprocess.call([homeDir + "/.config/qtile/autostart-picom.sh"])
+
+
 mod = "mod4"
 terminal = guess_terminal()
 

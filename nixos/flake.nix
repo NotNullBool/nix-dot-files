@@ -21,12 +21,16 @@
     outputs = { self, nixpkgs, ... }@inputs:
     let
         system = "x86_64-linux";
+        unstable-pkgs = import inputs.unstable-nixpkgs {
+            inherit system;
+            config = {allowUnfree=true;};
+        };
     in
     {
 
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             inherit system;
-            specialArgs = {inherit inputs;};
+            specialArgs = {inherit inputs; inherit unstable-pkgs;};
             modules = [ 
                 ./system/configuration.nix
                 inputs.nur.nixosModules.nur
@@ -39,7 +43,7 @@
                 config = {allowUnfree=true;};
                 overlays = [ inputs.nur.overlay ];
             };
-            extraSpecialArgs = { inherit inputs; };
+            extraSpecialArgs = { inherit inputs; inherit unstable-pkgs;};
             modules = [
                 ./user/home.nix
                 inputs.nur.hmModules.nur
