@@ -12,6 +12,7 @@ return {{
                 enable = true,
                 disable = {"c_sharp"},
             },
+            auto_install = true,
             highlight = { enable = true },
             incremental_selection = {enable = true},
             endwise = { enable = true }
