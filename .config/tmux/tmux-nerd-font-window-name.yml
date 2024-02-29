@@ -4,4 +4,6 @@ config:
 
 icons:
   zsh: " " # overwrite with your own symbol (Nerd Font icon, emoji, whatever!)
+  sh: " "
+  bash: " "
   # cmatrix: "🤯" # add new entries that aren't included
