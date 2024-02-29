@@ -21,7 +21,6 @@
         fd
         rustup
         gcc
-        fastfetch
         komorebi
         # fonts
         noto-fonts
@@ -29,6 +28,7 @@
         noto-fonts-emoji
     ] ++ [
         unstable-pkgs.webcord-vencord
+        unstable-pkgs.fastfetch
     ];
 
 
