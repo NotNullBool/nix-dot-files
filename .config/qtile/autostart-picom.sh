@@ -19,7 +19,7 @@ function run {
 
 
 
-picom &
+picom -b -f &
 
 
 #starting user applications at boot time
