@@ -28,8 +28,36 @@ from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from collections import namedtuple
 import subprocess
 import os
+
+class Dracula:
+    bg = "#22212C"
+    fg = "#F8F8F2"
+    selection = "#44475A"
+    comment = "#7970A9"
+    red = "#FF5555"
+    pink = "#FF80BF"
+    purple = "#9580FF"
+    cyan = "#80FFEA"
+    green = "#50fa7b"
+    yellow = "#FFFF80"
+    orange = "#FFB86C"
+    bright_red = "#FF6E6E"
+    bright_magenta = "#FF92DF"
+    bright_blue = "#BD93F9" # bright purple
+    bright_cyan = "#A4FFFF"
+    bright_green = "#8AFF80"
+    bright_yellow = "#F1FA8C"
+    bright_white = "#FFFFFF"
+    bright_gray = "#5f6a8e"
+    menu = "#21222C"
+    visual = "#3E4452"
+    gutter_fg = "#4B5263"
+    nontext = "#3B4048"
+    white = "#ABB2BF"
+    black = "#191A21"
 
 homeDir = os.path.expanduser('~')
 
@@ -121,7 +149,7 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Columns(border_focus=Dracula.pink, border_normal=Dracula.bg, border_width=4, margin=5),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),

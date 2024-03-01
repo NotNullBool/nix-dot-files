@@ -35,8 +35,18 @@
 # ] else [];
 
 # Use the systemd-boot EFI boot loader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    # boot.loader.systemd-boot.enable = true;
+
+    boot.loader = {
+        efi.canTouchEfiVariables = true;
+
+        grub = {
+            efiSupport = true;
+            device = "nodev";
+            useOSProber = true;
+        };
+
+    };
 
 # Set your time zone.
     time.timeZone = "America/New_York";
@@ -70,6 +80,7 @@
         wget
         tmux
         git
+        efibootmgr
     ]; #++ [
       #  unstable-pkgs.picom
     #];
