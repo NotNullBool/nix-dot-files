@@ -22,6 +22,7 @@
         rustup
         gcc
         komorebi
+        xclip
         # fonts
         noto-fonts
         noto-fonts-cjk

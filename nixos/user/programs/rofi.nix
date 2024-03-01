@@ -10,7 +10,7 @@ let
 
     rofi-theme = {
         "*" = {
-            drac-bgd = mkLiteral "#22212C";
+            drac-bgd = mkLiteral "#22212C00";
             drac-cur = mkLiteral "#454158";
             drac-fgd = mkLiteral "#f8f8f2";
             drac-cmt = mkLiteral "#7970A9";
