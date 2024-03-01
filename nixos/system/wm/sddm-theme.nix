@@ -1,5 +1,8 @@
-{ stdenv, fetchgit }:
+{ stdenv, fetchgit}:
 
+let
+    themeConf = /home/unix/.dotfiles/sddm/theme.conf;
+in
 stdenv.mkDerivation {
     name = "sddm-theme";
 
@@ -13,5 +16,10 @@ stdenv.mkDerivation {
     installPhase = ''
         mkdir -p $out
         cp -R ./* $out/
+        cd $out/
+        rm theme.conf
+        cp -r ${themeConf} $out/theme.conf
     '';
+
+        # cat "${themeConf}" > theme.conf
 }
