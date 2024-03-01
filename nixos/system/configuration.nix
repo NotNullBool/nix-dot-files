@@ -13,10 +13,15 @@
         ./networking.nix
         ../user/user-setup.nix
         ./wm/x11.nix
-        ./wm/sddm.nix
         ./wm/qtile/qtile.nix
     ];
 
+    qt.enable = true;
+
+    services.xserver.displayManager.sddm = {
+        enable = true;
+        theme = "${ pkgs.callPackage ./wm/sddm-theme.nix {} }";
+    };
 
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = (_: true);
@@ -81,6 +86,8 @@
         tmux
         git
         efibootmgr
+        stdenv
+        libsForQt5.qt5.qtgraphicaleffects
     ]; #++ [
       #  unstable-pkgs.picom
     #];
