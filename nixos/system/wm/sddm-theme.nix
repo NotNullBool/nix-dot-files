@@ -1,6 +1,7 @@
 { stdenv, fetchgit}:
 
 let
+    # Would be better if I can find a way to pass a relative path to dotfiles
     themeConf = /home/unix/.dotfiles/sddm/theme.conf;
 in
 stdenv.mkDerivation {
