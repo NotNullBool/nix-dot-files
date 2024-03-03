@@ -8,6 +8,7 @@
         ./programs/zsh.nix
         ./programs/lsd.nix
         ./programs/rofi.nix # x11 only;
+        ./programs/polybar.nix
         ./wm/qtile.nix
     ];
     # Home Manager needs a bit of information about you and the paths it should

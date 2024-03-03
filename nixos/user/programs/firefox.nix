@@ -1,6 +1,6 @@
 {config, pkgs, ...}:
 {
-    home.file."./.mozilla/firefox/default/extensions.json".source = ../../../.mozilla/firefox/default/extensions.json;
+    # home.file."./.mozilla/firefox/default/extensions.json".source = ../../../.mozilla/firefox/default/extensions.json;
 
     programs.firefox = {
         enable = true;
