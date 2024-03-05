@@ -33,7 +33,7 @@ in
         fd
         rustup
         gcc
-        lua-language-server
+        # lua-language-server
         # fzf # set up in home.nix
     ];
 
