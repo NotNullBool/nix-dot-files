@@ -13,6 +13,7 @@
     {
 
         devShell.${system} = pkgs.mkShell {
+            name = "lua";
             packages = with pkgs; [ lua-language-server ];
         };
 
