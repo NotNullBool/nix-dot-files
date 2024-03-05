@@ -20,10 +20,9 @@
         yq # used for yml files and added for TMUX plugin
         trashy # buggy may want to replace
         fd
-        rustup
-        gcc
-        komorebi
         xclip
+        atool
+
         # fonts
         noto-fonts
         noto-fonts-cjk
