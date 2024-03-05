@@ -4,7 +4,13 @@ return {{
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        { "williamboman/mason-lspconfig.nvim", dependencies = "williamboman/mason.nvim", opts = {automatic_installation = true,}}
+        { "williamboman/mason-lspconfig.nvim", enabled = function ()
+            if vim.env.NIX_PATH then
+                return false
+            end
+            return true
+        end,
+        dependencies = "williamboman/mason.nvim", opts = {automatic_installation = true,}}
     },
     config = function()
         local lspconfig = require("lspconfig")
@@ -129,129 +135,156 @@ return {{
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
+        if vim.env.NIX_PATH then
 
-        require("mason-lspconfig").setup_handlers({
-            function(server_name)
-                lspconfig[server_name].setup({
-                    capabilities = capabilities,
-                })
-            end,
+            lspconfig["lua_ls"].setup({
+                capabilities = capabilities,
 
-            ["omnisharp"] = function ()
-                lspconfig["omnisharp"].setup({
-                    handlers = {
-                        ["textDocument/definition"] = function(...)
-                            return require("omnisharp_extended").handler(...)
-                        end,
+                settings = {
+                    Lua = {
+                        hint = { enable = true },
+                        diagnostics = {
+                            global = { "vim" },
+                        },
+                        workspace = {
+                            library = {
+                                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            },
+                            checkThirdParty = false
+                        },
                     },
-                    keys = {
-                        {
-                            "gd",
-                            function()
-                                require("omnisharp_extended").telescope_lsp_definitions()
+                },
+            })
+
+            lspconfig["nil_ls"].setup({
+                capabilities = capabilities
+            }) -- nix lsp
+
+        else
+
+            require("mason-lspconfig").setup_handlers({
+                function(server_name)
+                    lspconfig[server_name].setup({
+                        capabilities = capabilities,
+                    })
+                end,
+
+                ["omnisharp"] = function ()
+                    lspconfig["omnisharp"].setup({
+                        handlers = {
+                            ["textDocument/definition"] = function(...)
+                                return require("omnisharp_extended").handler(...)
                             end,
-                            desc = "Goto Definition",
                         },
-                    },
-                    capabilities = capabilities,
-                    -- enable_roslyn_analyzers = true,
-                    -- organize_imports_on_format = true,
-                    enable_import_completion = true,
-                    on_attach = function ()
-                        vim.bo.indentexpr = ""
-                        vim.bo.cindent = true
-                    end
-                })
-            end,
-
-            ["clangd"] = function()
-                lspconfig["clangd"].setup({
-                    root_dir = function(fname)
-                        return require("lspconfig.util").root_pattern(
-                            "Makefile",
-                            "configure.ac",
-                            "configure.in",
-                            "config.h.in",
-                            "meson.build",
-                            "meson_options.txt",
-                            "build.ninja"
-                        )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-                                fname
-                            ) or require("lspconfig.util").find_git_ancestor(fname)
-                    end,
-                    capabilities = {
-                        offsetEncoding = { "utf-16" },
-                    },
-                    cmd = {
-                        "clangd",
-                        "--background-index",
-                        "--clang-tidy",
-                        "--header-insertion=iwyu",
-                        "--completion-style=detailed",
-                        "--function-arg-placeholders",
-                        "--fallback-style=llvm",
-                    },
-                    init_options = {
-                        usePlaceholders = true,
-                        completeUnimported = true,
-                        clangdFileStatus = true,
-                    },
-                })
-            end,
-
-            -- example of how to overide the default setup
-            ["rust_analyzer"] = function ()
-                lspconfig["rust_analyzer"].setup({
-                    settings = {
-                        ["rust-analyzer"] = {
-                            cargo = {
-                                allFeatures = true,
-                                loadOutDirsFromCheck = true,
-                                runBuildScripts = true,
-                            },
-                            check = "clippy",
-                            -- Add clippy lints for Rust.
-                            checkOnSave = {
-                                allFeatures = true,
-                                command = "clippy",
-                                extraArgs = { "--no-deps" },
-                            },
-                            procMacro = {
-                                enable = true,
-                                ignored = {
-                                    ["async-trait"] = { "async_trait" },
-                                    ["napi-derive"] = { "napi" },
-                                    ["async-recursion"] = { "async_recursion" },
-                                },
-                            },
-                        }
-                    },
-                    capabilities = capabilities,
-                })
-            end,
-
-            ["lua_ls"] = function()
-                lspconfig["lua_ls"].setup({
-                    capabilities = capabilities,
-
-                    settings = {
-                        Lua = {
-                            hint = { enable = true },
-                            diagnostics = {
-                                global = { "vim" },
-                            },
-                            workspace = {
-                                library = {
-                                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                                },
-                                checkThirdParty = false
+                        keys = {
+                            {
+                                "gd",
+                                function()
+                                    require("omnisharp_extended").telescope_lsp_definitions()
+                                end,
+                                desc = "Goto Definition",
                             },
                         },
-                    },
-                })
-            end
+                        capabilities = capabilities,
+                        -- enable_roslyn_analyzers = true,
+                        -- organize_imports_on_format = true,
+                        enable_import_completion = true,
+                        on_attach = function ()
+                            vim.bo.indentexpr = ""
+                            vim.bo.cindent = true
+                        end
+                    })
+                end,
 
-        })
+                ["clangd"] = function()
+                    lspconfig["clangd"].setup({
+                        root_dir = function(fname)
+                            return require("lspconfig.util").root_pattern(
+                                "Makefile",
+                                "configure.ac",
+                                "configure.in",
+                                "config.h.in",
+                                "meson.build",
+                                "meson_options.txt",
+                                "build.ninja"
+                            )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+                                    fname
+                                ) or require("lspconfig.util").find_git_ancestor(fname)
+                        end,
+                        capabilities = {
+                            offsetEncoding = { "utf-16" },
+                        },
+                        cmd = {
+                            "clangd",
+                            "--background-index",
+                            "--clang-tidy",
+                            "--header-insertion=iwyu",
+                            "--completion-style=detailed",
+                            "--function-arg-placeholders",
+                            "--fallback-style=llvm",
+                        },
+                        init_options = {
+                            usePlaceholders = true,
+                            completeUnimported = true,
+                            clangdFileStatus = true,
+                        },
+                    })
+                end,
+
+                -- example of how to overide the default setup
+                ["rust_analyzer"] = function ()
+                    lspconfig["rust_analyzer"].setup({
+                        settings = {
+                            ["rust-analyzer"] = {
+                                cargo = {
+                                    allFeatures = true,
+                                    loadOutDirsFromCheck = true,
+                                    runBuildScripts = true,
+                                },
+                                check = "clippy",
+                                -- Add clippy lints for Rust.
+                                checkOnSave = {
+                                    allFeatures = true,
+                                    command = "clippy",
+                                    extraArgs = { "--no-deps" },
+                                },
+                                procMacro = {
+                                    enable = true,
+                                    ignored = {
+                                        ["async-trait"] = { "async_trait" },
+                                        ["napi-derive"] = { "napi" },
+                                        ["async-recursion"] = { "async_recursion" },
+                                    },
+                                },
+                            }
+                        },
+                        capabilities = capabilities,
+                    })
+                end,
+
+                ["lua_ls"] = function()
+                    lspconfig["lua_ls"].setup({
+                        capabilities = capabilities,
+
+                        settings = {
+                            Lua = {
+                                hint = { enable = true },
+                                diagnostics = {
+                                    global = { "vim" },
+                                },
+                                workspace = {
+                                    library = {
+                                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                    },
+                                    checkThirdParty = false
+                                },
+                            },
+                        },
+                    })
+                end
+
+            })
+        end
     end,
 },  {
         "folke/neodev.nvim",

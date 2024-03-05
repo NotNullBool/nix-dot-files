@@ -10,7 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({{import = "plugins"} , {import = "plugins.lsp.lspconfig"}, {import = "plugins.telescope_nvim.core"},
+require("lazy").setup({{import = "plugins"} , {import = "plugins.lsp"}, {import = "plugins.telescope_nvim.core"},
     --{import = "plugins.nvim-cmp"},
     --{import = "plugins.nvim-treesitter"},
     --{import = "plugins.dracula"},

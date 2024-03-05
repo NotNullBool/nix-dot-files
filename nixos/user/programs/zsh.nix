@@ -10,6 +10,7 @@ pkgs:
     programs.zsh = {
         enable = true;
         enableAutosuggestions = true;
+# For neovim to work previously: export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "''${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
         initExtra = ''
             if [ ! "$TMUX" ]; then
                 if tmux has-session -t main; then
@@ -19,7 +20,6 @@ pkgs:
                 fi
             fi
             fastfetch
-            export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "''${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
         '';
         syntaxHighlighting = {
             enable = true;

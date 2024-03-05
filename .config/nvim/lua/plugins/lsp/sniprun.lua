@@ -1,5 +1,11 @@
 return {
 	"michaelb/sniprun",
+	enabled = function ()
+        if vim.env.NIX_PATH == nil then
+            return true
+        end
+        return false
+	end,
 	build = "sh ./install.sh",
 	cmd = {"SnipRun", "SnipInfo"},
 	opts = {
