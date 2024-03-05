@@ -34,7 +34,6 @@ in
         rustup
         gcc
         lua-language-server
-        nil
         # fzf # set up in home.nix
     ];
 

@@ -68,6 +68,12 @@
 
     programs = {
 
+        direnv = {
+            enable = true;
+            enableZshIntegration = true;
+            nix-direnv.enable = true;
+        };
+
         script-directory = {
             enable = true;
             settings = { SD_ROOT = "${config.home.homeDirectory}/.dotfiles/scripts"; };
