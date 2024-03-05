@@ -18,6 +18,8 @@
 
     qt.enable = true;
 
+    # hardware.keyboard.qmk.enable = true;
+
     services.xserver.displayManager.sddm = {
         enable = true;
         theme = "${ pkgs.callPackage ./wm/sddm-theme.nix {} }";

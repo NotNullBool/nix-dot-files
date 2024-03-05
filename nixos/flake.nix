@@ -52,6 +52,7 @@
         };
 
         devShell.${system} = pkgs.mkShell {
+            name = "nix-dev";
             packages = with pkgs; [nil];
         };
 
