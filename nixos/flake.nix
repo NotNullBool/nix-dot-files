@@ -25,6 +25,11 @@
             inherit system;
             config = {allowUnfree=true;};
         };
+        pkgs = import nixpkgs {
+            inherit system;
+            config = {allowUnfree=true;};
+            overlays = [ inputs.nur.overlay ];
+        };
     in
     {
 
@@ -38,16 +43,16 @@
         };
 
         homeConfigurations."unix@nixos" = inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs {
-                inherit system;
-                config = {allowUnfree=true;};
-                overlays = [ inputs.nur.overlay ];
-            };
+            inherit pkgs;
             extraSpecialArgs = { inherit inputs; inherit unstable-pkgs;};
             modules = [
                 ./user/home.nix
                 inputs.nur.hmModules.nur
             ];
+        };
+
+        devShell.${system} = pkgs.mkShell {
+            packages = with pkgs; [nil];
         };
 
     };
