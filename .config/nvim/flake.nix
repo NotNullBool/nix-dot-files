@@ -13,9 +13,7 @@
     {
 
         devShell.${system} = pkgs.mkShell {
-            packages = with pkgs = [
-                lua-lsp-server
-            ];
+            packages = with pkgs; [ lua-language-server ];
         };
 
     };
