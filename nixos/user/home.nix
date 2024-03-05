@@ -22,6 +22,7 @@
         fd
         xclip
         atool
+        unzip
 
         # fonts
         noto-fonts
