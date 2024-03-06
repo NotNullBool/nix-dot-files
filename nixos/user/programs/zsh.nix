@@ -100,6 +100,7 @@ pkgs:
         shellAliases = {
             cat = "bat";
             tp = "trash put";
+            DIRENV_LOG_FORMAT = ""; #disable direnv log
         };
     };
 }
