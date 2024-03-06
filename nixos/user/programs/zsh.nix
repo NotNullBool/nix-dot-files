@@ -5,6 +5,7 @@ pkgs:
         # Colorful manuals
         MANPAGER = "sh -c 'col -bx | bat -l man -p'"; 
         MANROFFOPT = "-c";
+        DIRENV_LOG_FORMAT = ""; #disable direnv log
     };
 
     programs.zsh = {
@@ -100,7 +101,6 @@ pkgs:
         shellAliases = {
             cat = "bat";
             tp = "trash put";
-            DIRENV_LOG_FORMAT = ""; #disable direnv log
         };
     };
 }
