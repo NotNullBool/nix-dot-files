@@ -18,7 +18,7 @@
 
     qt.enable = true;
 
-    # hardware.keyboard.qmk.enable = true;
+    hardware.keyboard.qmk.enable = true;
 
     services.xserver.displayManager.sddm = {
         enable = true;
