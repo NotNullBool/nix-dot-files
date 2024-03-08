@@ -18,6 +18,17 @@
 
     services.xserver.videoDrivers = ["nvidia"];
 
+    services.xserver.screenSection = ''
+
+        Option         "Stereo" "0"
+        Option         "nvidiaXineramaInfoOrder" "DFP-1"
+        Option         "metamodes" "1920x1080_60 +0+0 {viewportin=1920x1200}"
+        Option         "SLI" "Off"
+        Option         "MultiGPU" "Off"
+        Option         "BaseMosaic" "off"
+        Option         "DPI" "120 x 120"
+    '';
+
     hardware.nvidia = {
         modesetting.enable = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
